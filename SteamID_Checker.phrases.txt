@@ -1,0 +1,16 @@
+"Phrases"
+{
+	"chat_message"
+	{
+		"#format"	"{1:s}{2:s}"
+		"en"		"{darkblue}[{lime}{1}{darkblue}] {lightblue}Twoje Steam ID {darkred}{2}"
+		"pl"		"{darkblue}[{lime}{1}{darkblue}] {lightblue}Your Steam ID {darkred}{2}"
+	}
+
+	"console_message"
+	{
+		"#format"	"{1:s}{2:s}"
+		"en"		"[{1}] Twoje Steam ID {2}"
+		"pl"		"[{1}] Your Steam ID {2}"
+	}
+}
