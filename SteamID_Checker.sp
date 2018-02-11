@@ -40,7 +40,6 @@ public void OnPluginStart()
 	g_ChatTag = AutoExecConfig_CreateConVar("SteamID_chattag", "Steam ID", "Tag on chat");
 	g_SteamIDType = AutoExecConfig_CreateConVar("SteamID_Type", "0", "Steam ID Type: 0 - STEAM_0:0:69130802, 1 - [U:1:138261604], 2 - 76561198098527332");
 	g_Message = AutoExecConfig_CreateConVar("SteamID_Type_Message", "0", "Message: 0 - Chat & Console, 1 - Chat, 2 - Console");
-	
 	g_Commands = AutoExecConfig_CreateConVar("SteamID_Commands", "steamid", "Set your custom chat commands (!steamid (no 'sm_'/'!')(seperate with comma ', ')(max. 12 commands)");
 	
 	AutoExecConfig_CleanFile();
