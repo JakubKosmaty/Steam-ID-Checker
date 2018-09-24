@@ -3,8 +3,8 @@
 	"chat_message"
 	{
 		"#format"	"{1:s}{2:s}"
-		"en"		"{darkblue}[{lime}{1}{darkblue}] {lightblue}Twoje Steam ID {darkred}{2}"
-		"pl"		"{darkblue}[{lime}{1}{darkblue}] {lightblue}Your Steam ID {darkred}{2}"
+		"en"		"{DARKBLUE}[{LIME}{1}{DARKBLUE}] {LIGHTBLUE}Twoje Steam ID {DARKRED}{2}"
+		"pl"		"{DARKBLUE}[{LIME}{1}{DARKBLUE}] {LIGHTBLUE}Your Steam ID {DARKRED}{2}"
 	}
 
 	"console_message"
