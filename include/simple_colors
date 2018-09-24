@@ -1,0 +1,108 @@
+/*
+    --- Biały ---
+    \x01 - {WHITE}
+
+    --- Szary ---
+    \x0A - {GRAY}
+    \x08 - {LIGHTGRAY}
+
+    --- Czerwony ---
+    \x02 - {DARKRED}
+    \x07 - {RED}
+    \x0F - {LIGHTRED}
+
+    --- Zielony ---
+    \x04 - {GREEN}
+    \x06 - {LIGHTGREEN}
+
+    --- Oliwkowy ---
+    \x05 - {OLIVE}
+    \x09 - {LIGHTOLIVE}
+
+    --- Pomarańczowy ---
+    \x10 - {ORANGE}
+
+    --- Niebieski ---
+    \x0C - {BLUE}
+    \x0B - {LIGHTBLUE}
+
+    --- Fioletowy ---
+    \x0E - {PURPLE}
+*/
+
+char g_sColors[][] = 
+{
+    "{WHITE}",
+    "{DARKRED}",
+    "{GREEN}",
+    "{OLIVE}",
+    "{LIGHTGREEN}",
+    "{RED}",
+    "{LIGHTGRAY}",
+    "{LIGHTOLIVE}",
+    "{ORANGE}",
+    "{GRAY}",
+    "{LIGHTBLUE}",
+    "{BLUE}",
+    "{PURPLE}",
+    "{LIGHTRED}"
+},
+
+g_sColorsCSGO[][] = 
+{
+    "\x01",
+    "\x02",
+    "\x04",
+    "\x05",
+    "\x06",
+    "\x07",
+    "\x08",
+    "\x09",
+    "\x10",
+    "\x0A",
+    "\x0B",
+    "\x0C",
+    "\x0E",
+    "\x0F"
+};
+
+stock void S_PrintToChat(int client, char[] szMessage, any ...)
+{
+    if(client && IsClientInGame(client) && !IsFakeClient(client))
+    {
+        char szBuffer[PLATFORM_MAX_PATH], szNewMessage[PLATFORM_MAX_PATH];
+
+        Format(szBuffer, sizeof(szBuffer), " \x01%s", szMessage);
+        VFormat(szNewMessage, sizeof(szNewMessage), szBuffer, 3);
+
+        for(int i = 0; i < 14; i++)
+        {
+            ReplaceString(szNewMessage, sizeof(szNewMessage), g_sColors[i], g_sColorsCSGO[i]);
+        }
+        ReplaceString(szNewMessage, sizeof(szNewMessage), "{TEAM}", "\x03");
+
+        Handle hBf = StartMessageOne("SayText2", client, USERMSG_RELIABLE | USERMSG_BLOCKHOOKS);
+        if(hBf != null)
+        {
+            if(GetUserMessageType() == UM_Protobuf)
+            {
+                Protobuf hProtoBuffer = UserMessageToProtobuf(hBf);
+                hProtoBuffer.SetInt("ent_idx", client);
+                hProtoBuffer.SetBool("chat", true);
+                hProtoBuffer.SetString("msg_name", szNewMessage);
+                hProtoBuffer.AddString("params", "");
+                hProtoBuffer.AddString("params", "");
+                hProtoBuffer.AddString("params", "");
+                hProtoBuffer.AddString("params", "");
+            }
+            else
+            {
+                BfWrite hBfBuffer = UserMessageToBfWrite(hBf);
+                hBfBuffer.WriteByte(client);
+                hBfBuffer.WriteByte(true);
+                hBfBuffer.WriteString(szNewMessage);
+            }
+        }
+        EndMessage();
+    }
+}
