@@ -1,12 +1,11 @@
-#pragma semicolon 1
-
-#define PLUGIN_AUTHOR "Master"
-#define PLUGIN_VERSION "2.00"
-
 #include <sourcemod>
 #include <simple_colors>
 
+#pragma semicolon 1
 #pragma newdecls required
+
+#define PLUGIN_AUTHOR "Master"
+#define PLUGIN_VERSION "2.00"
 
 public Plugin myinfo = 
 {
@@ -48,7 +47,7 @@ public void OnCvarChange(ConVar cvar, char[] oldValue, char[] newValue)
 {
     if(cvar == g_cChatTag)
     {
-        Format(g_sTag, sizeof(g_sTag), "%s", newValue);
+        g_cChatTag.GetString(g_sTag, sizeof(g_sTag));
     }
     else if(cvar == g_cSteamIDType)
     {
@@ -63,10 +62,9 @@ public void OnCvarChange(ConVar cvar, char[] oldValue, char[] newValue)
 public Action Cmd_SteamID(int client, int args)
 {
     char sSteamID[64];
-
     GetClientAuthId(client, g_iSteamIDType == 0 ? AuthId_Steam2 : g_iSteamIDType == 1 ? AuthId_Steam3 : AuthId_SteamID64, sSteamID, sizeof(sSteamID));
 
-    if(g_iMessage == 0)
+    if(!g_iMessage)
     {
         S_PrintToChat(client, "%t", "chat_message", g_sTag, sSteamID);
         PrintToConsole(client, "%t", "console_message", g_sTag, sSteamID);
