@@ -1,69 +1,11 @@
-/*
-    --- Biały ---
-    \x01 - {WHITE}
-
-    --- Szary ---
-    \x0A - {GRAY}
-    \x08 - {LIGHTGRAY}
-
-    --- Czerwony ---
-    \x02 - {DARKRED}
-    \x07 - {RED}
-    \x0F - {LIGHTRED}
-
-    --- Zielony ---
-    \x04 - {GREEN}
-    \x06 - {LIGHTGREEN}
-
-    --- Oliwkowy ---
-    \x05 - {OLIVE}
-    \x09 - {LIGHTOLIVE}
-
-    --- Pomarańczowy ---
-    \x10 - {ORANGE}
-
-    --- Niebieski ---
-    \x0C - {BLUE}
-    \x0B - {LIGHTBLUE}
-
-    --- Fioletowy ---
-    \x0E - {PURPLE}
-*/
-
-char g_sColors[][] = 
+char g_sColours[][] = 
 {
-    "{WHITE}",
-    "{DARKRED}",
-    "{GREEN}",
-    "{OLIVE}",
-    "{LIGHTGREEN}",
-    "{RED}",
-    "{LIGHTGRAY}",
-    "{LIGHTOLIVE}",
-    "{ORANGE}",
-    "{GRAY}",
-    "{LIGHTBLUE}",
-    "{BLUE}",
-    "{PURPLE}",
-    "{LIGHTRED}"
+    "{default}", "{red}", "{lightpurple}", "{green}", "{lime}", "{lightgreen}", "{lightred}", "{gray}", "{olive}", "{orange}", "{lightblue}", "{blue}", "{purple}"
 },
 
-g_sColorsCSGO[][] = 
+g_sColoursCSGO[][] = 
 {
-    "\x01",
-    "\x02",
-    "\x04",
-    "\x05",
-    "\x06",
-    "\x07",
-    "\x08",
-    "\x09",
-    "\x10",
-    "\x0A",
-    "\x0B",
-    "\x0C",
-    "\x0E",
-    "\x0F"
+    "\x01", "\x02", "\x03", "\x04", "\x05", "\x06", "\x07", "\x08", "\x09", "\x10", "\x0B", "\x0C", "\x0E"
 };
 
 stock void S_PrintToChat(int client, char[] szMessage, any ...)
@@ -75,9 +17,9 @@ stock void S_PrintToChat(int client, char[] szMessage, any ...)
         Format(szBuffer, sizeof(szBuffer), " \x01%s", szMessage);
         VFormat(szNewMessage, sizeof(szNewMessage), szBuffer, 3);
 
-        for(int i = 0; i < 14; i++)
+        for(int i = 0; i < 13; i++)
         {
-            ReplaceString(szNewMessage, sizeof(szNewMessage), g_sColors[i], g_sColorsCSGO[i]);
+            ReplaceString(szNewMessage, sizeof(szNewMessage), g_sColours[i], g_sColoursCSGO[i]);
         }
         ReplaceString(szNewMessage, sizeof(szNewMessage), "{TEAM}", "\x03");
 
