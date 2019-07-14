@@ -62,7 +62,7 @@ public void OnCvarChange(ConVar cvar, char[] oldValue, char[] newValue)
 public Action Cmd_SteamID(int client, int args)
 {
     char sSteamID[64];
-    GetClientAuthId(client, g_iSteamIDType == 0 ? AuthId_Steam2 : g_iSteamIDType == 1 ? AuthId_Steam3 : AuthId_SteamID64, sSteamID, sizeof(sSteamID));
+    GetClientAuthId(client, !g_iSteamIDType ? AuthId_Steam2 : g_iSteamIDType == 1 ? AuthId_Steam3 : AuthId_SteamID64, sSteamID, sizeof(sSteamID));
 
     if(!g_iMessage)
     {
