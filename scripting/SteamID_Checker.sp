@@ -17,7 +17,7 @@ public Plugin myinfo =
 };
 
 ConVar g_cChatTag;
-char g_sTag[32] = "Steam ID";
+char g_sTag[32];
 
 ConVar g_cSteamIDType;
 int g_iSteamIDType;
@@ -38,7 +38,7 @@ public void OnPluginStart()
 
     AutoExecConfig(true, "SteamID_Checker");
 
-    RegConsoleCmd("sm_steamid", Cmd_SteamID, "Chceck player Steam ID");
+    RegConsoleCmd("sm_steamid", Cmd_SteamID);
 
     LoadTranslations("SteamID_Checker.phrases");
 }
