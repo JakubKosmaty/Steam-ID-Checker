@@ -65,15 +65,15 @@ public Action Cmd_SteamID(int client, int args)
 
     if(!g_iMessage)
     {
-        S_PrintToChat(client, "%t", "chat_message", g_sTag, sSteamID);
-        PrintToConsole(client, "%t", "console_message", g_sTag, sSteamID);
+        S_PrintToChat(client, "%T", "chat_message", client, g_sTag, sSteamID);
+        PrintToConsole(client, "%T", "console_message", client, g_sTag, sSteamID);
     }
     else if(g_iMessage == 1)
     {
-        S_PrintToChat(client, "%t", "chat_message", g_sTag, sSteamID);
+        S_PrintToChat(client, "%T", "chat_message", client, g_sTag, sSteamID);
     }
     else
     {
-        PrintToConsole(client, "%t", "console_message", g_sTag, sSteamID);
+        PrintToConsole(client, "%T", "console_message", client, g_sTag, sSteamID);
     }
 }
